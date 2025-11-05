@@ -1,29 +1,31 @@
-import { Teacher } from "./subjects/Teacher";
-import { Cpp } from "./subjects/Cpp";
-import { Java } from "./subjects/Java";
-import { React } from "./subjects/React";
+interface MajorCredits {
+  credits: number;
+  brand: 'major';
+}
 
-const cpp = new Cpp();
-const java = new Java();
-const react = new React();
+interface MinorCredits {
+  credits: number;
+  brand: 'minor';
+}
 
-const cTeacher: Teacher = {
-  firstName: "John",
-  lastName: "Doe",
-  experienceTeachingC: 10,
-};
+function sumMajorCredits(subject1: MajorCredits, subject2: MajorCredits): MajorCredits {
+  return {
+    credits: subject1.credits + subject2.credits,
+    brand: 'major'
+  };
+}
 
-console.log("C++");
-cpp.setTeacher(cTeacher);
-console.log(cpp.getRequirements());
-console.log(cpp.getAvailableTeacher());
+function sumMinorCredits(subject1: MinorCredits, subject2: MinorCredits): MinorCredits {
+  return {
+    credits: subject1.credits + subject2.credits,
+    brand: 'minor'
+  };
+}
 
-console.log("Java");
-java.setTeacher(cTeacher);
-console.log(java.getRequirements());
-console.log(java.getAvailableTeacher());
+const major1: MajorCredits = { credits: 3, brand: 'major' };
+const major2: MajorCredits = { credits: 4, brand: 'major' };
+console.log(sumMajorCredits(major1, major2)); // { credits: 7, brand: 'major' }
 
-console.log("React");
-react.setTeacher(cTeacher);
-console.log(react.getRequirements());
-console.log(react.getAvailableTeacher());
+const minor1: MinorCredits = { credits: 1, brand: 'minor' };
+const minor2: MinorCredits = { credits: 2, brand: 'minor' };
+console.log(sumMinorCredits(minor1, minor2)); // { credits: 3, brand: 'minor' }
